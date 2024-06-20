@@ -41,16 +41,16 @@ export default function Home() {
               <p className="social-text">Or Sign in with social platforms</p>
               <div className="social-media">
                 <a href="#" className="social-icon">
-                  <i className="fab fa-facebook-f"></i>
+                  <FontAwesomeIcon icon={faFacebookF} />
                 </a>
                 <a href="#" className="social-icon">
-                  <i className="fab fa-twitter"></i>
+                  <FontAwesomeIcon icon={faTwitter} />
                 </a>
                 <a href="#" className="social-icon">
-                  <i className="fab fa-google"></i>
+                  <FontAwesomeIcon icon={faGoogle} />
                 </a>
                 <a href="#" className="social-icon">
-                  <i className="fab fa-linkedin-in"></i>
+                  <FontAwesomeIcon icon={faLinkedinIn} />
                 </a>
               </div>
             </form>
