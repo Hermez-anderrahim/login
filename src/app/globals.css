@@ -45,12 +45,15 @@ input {
   font-family: "Poppins", sans-serif;
 }
 
+.big-container {
+  overflow: hidden;
+}
 .container {
   position: relative;
   width: 100%;
   background-color: #fff;
   min-height: 100vh;
-  overflow: hidden;
+  margin-left: 6rem;
 }
 
 .forms-container {
