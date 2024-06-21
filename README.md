@@ -1,5 +1,21 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+## Next auth
+
+# The functionality of NextAuth can summarized like this:
+
+# Functions that trigger login and logout processes.
+
+# Built-in providers and adapters that can be customized.
+
+# Setting cookies.
+
+# Creating and populating JWT tokens.
+
+# Reading these token using helper functions.
+
+# Integration with a database.
+
 ## Getting Started
 
 First, run the development server:
