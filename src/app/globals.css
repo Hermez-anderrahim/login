@@ -294,7 +294,6 @@ form.sign-in-form {
   opacity: 0;
   z-index: 1;
 }
-
 .container.sign-up-mode .right-panel .image,
 .container.sign-up-mode .right-panel .content {
   transform: translateX(0%);
@@ -411,12 +410,10 @@ form.sign-in-form {
     transform: translate(-50%, 0);
   }
 }
-
 @media (max-width: 570px) {
   form {
     padding: 0 1.5rem;
   }
-
   .image {
     display: none;
   }

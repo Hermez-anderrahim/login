@@ -16,9 +16,11 @@ const page = async () => {
           <SignOutButton />
         </div>
       ) : (
-        <button className="btn solid flex justify-center items-center">
-          <a href="/signin"> go to sign in </a>
-        </button>
+        <div>
+          <button className="btn solid flex justify-center items-center">
+            <a href="/signin"> go to sign in </a>
+          </button>
+        </div>
       )}
     </div>
   );
