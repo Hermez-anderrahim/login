@@ -28,7 +28,7 @@ export const SignUp = () => {
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-      let result; // Declare the 'result' variable
+      let result = null; // Initialize the 'result' variable with a default value of null
       if (response.ok) {
         localStorage.setItem("jwt", data.token);
         result = await signIn("credentials", {
@@ -44,8 +44,13 @@ export const SignUp = () => {
         // Handle errors (e.g., display an error message)
         setErrorMessage(result.error);
       } else {
-        // Redirect the user after successful login
-        window.location.href = result.url || callbackUrl;
+        if (result) {
+          window.location.href = result.url || callbackUrl;
+        } else {
+          // Handle the case where result is undefined
+          // For example, redirect to a default page or show an error message
+          window.location.href = callbackUrl;
+        }
       }
     } catch (error) {}
   };
