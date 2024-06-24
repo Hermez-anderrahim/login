@@ -12,7 +12,9 @@ const page = async () => {
       {session ? (
         /* <SignIn /> */
         <div className="flex flex-col">
-          <h1 className="text-center">you are signed in</h1>
+          <h1 className="text-center">
+            hello {session.user?.name} you are signed in
+          </h1>
           <SignOutButton />
         </div>
       ) : (

@@ -434,3 +434,11 @@ form.sign-in-form {
     left: 50%;
   }
 }
+.fa,
+.fas,
+.far,
+.fal,
+.fad,
+.fab {
+  font-size: 4em; /* Adjust based on your design */
+}

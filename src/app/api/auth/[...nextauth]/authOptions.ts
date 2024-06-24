@@ -3,7 +3,8 @@ import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import { connectToDatabase } from "@/app/lib/mongoDB"; // Adjust the import path as necessary
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import { clientPromise } from "@/app/lib/mongoDB";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -22,8 +23,10 @@ export const authOptions: NextAuthOptions = {
         password: { label: "password", type: "password" },
       },
       async authorize(credentials, req) {
+        credentials ??= {};
         console.log("im inside segment authorize");
-        const { client, db } = await connectToDatabase(); // Use the connectToDatabase function
+        const client = await clientPromise;
+        const db = client.db();
         const user = await db.collection("users").findOne({
           email: credentials?.email,
         });
@@ -31,15 +34,23 @@ export const authOptions: NextAuthOptions = {
           user &&
           (await bcrypt.compare(credentials.password, user.password))
         ) {
-          return { id: user._id, name: user.name, email: user.email };
+          return {
+            id: user._id.toString(),
+            name: user.name,
+            email: user.email,
+          };
         } else {
           return null;
         }
       },
     }),
   ],
+  adapter: MongoDBAdapter(clientPromise) as any,
   session: {
-    jwt: true,
+    strategy: "jwt",
+  },
+  jwt: {
+    secret: process.env.TOKEN_SECRET ?? "defaultkey",
   },
   callbacks: {
     async jwt({ token, user }) {

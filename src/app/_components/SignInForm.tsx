@@ -1,21 +1,12 @@
 "use client";
 import React from "react";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faLock, faEnvelope } from "@fortawesome/free-solid-svg-icons";
-
-import {
-  faFacebookF,
-  faTwitter,
-  faGoogle,
-  faGithub,
-} from "@fortawesome/free-brands-svg-icons";
-import SignInButton from "./utils/SignInButton";
-import { Result } from "postcss";
+// Importing icons from react-icons
+import { MdEmail, MdLock } from "react-icons/md";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 
 export const SignIn = () => {
-  const { data: session } = useSession();
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const searchParams = useSearchParams();
@@ -29,13 +20,14 @@ export const SignIn = () => {
       callbackUrl,
     });
   };
-
   return (
     <div className="">
       <form onSubmit={handleSubmit} action="" className="sign-in-form">
         <h2 className="title">Sign In</h2>
-        <div className="input-field">
-          <FontAwesomeIcon icon={faUser} />
+        <div className="input-field flex items-center">
+          <div className="ml-3">
+            <MdEmail />
+          </div>
           <input
             type="email"
             placeholder="email"
@@ -44,8 +36,11 @@ export const SignIn = () => {
             required
           />
         </div>
-        <div className="input-field">
-          <FontAwesomeIcon icon={faLock} />
+        <div className="input-field flex items-center ml-14">
+          <div className="ml-3">
+            <MdLock />
+          </div>
+
           <input
             type="password"
             placeholder="Password"
@@ -60,26 +55,19 @@ export const SignIn = () => {
         </button>
         <p className="social-text">Or Sign in with social platforms</p>
         <div className="social-media">
-          <a href="#" className="social-icon">
-            <FontAwesomeIcon icon={faFacebookF} />
-          </a>
-          <a href="#" className="social-icon">
-            <FontAwesomeIcon icon={faTwitter} />
-          </a>
-
           <div
-            className="social-icon"
+            className="social-icon "
             onClick={() => signIn("google", { callbackUrl })}
             style={{ cursor: "pointer" }}
           >
-            <FontAwesomeIcon icon={faGoogle} />
+            <FaGoogle />
           </div>
           <div
-            className="social-icon"
+            className="social-icon flex items-center"
             onClick={() => signIn("github", { callbackUrl })}
             style={{ cursor: "pointer" }}
           >
-            <FontAwesomeIcon icon={faGithub} />
+            <FaGithub />
           </div>
         </div>
       </form>
