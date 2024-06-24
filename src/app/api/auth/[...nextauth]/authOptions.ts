@@ -23,7 +23,7 @@ export const authOptions: NextAuthOptions = {
         password: { label: "password", type: "password" },
       },
       async authorize(credentials, req) {
-        credentials ??= {};
+        credentials ??= { email: "", password: "" };
         console.log("im inside segment authorize");
         const client = await clientPromise;
         const db = client.db();
