@@ -9,9 +9,7 @@ const uri = process.env.MONGODB_URI;
 const options = {
   serverApi: {
     version: ServerApiVersion.v1,
-    strict: true,
     deprecationErrors: true,
-    tls: true,
     tlsAllowInvalidCertificates: false,
     useUnifiedTopology: true,
     useNewUrlParser: true,

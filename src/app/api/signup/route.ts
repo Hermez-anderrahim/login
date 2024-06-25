@@ -6,9 +6,11 @@ export const maxDuration = 60;
 export async function POST(req: Request, res: Response) {
   try {
     const { name, email, password } = await req.json();
+    console.log("im inside creation route");
     const client = await clientPromise;
     const db = client.db();
 
+    console.log("im below db connection");
     const user = await db.collection("users").findOne({ email: email });
     if (user) {
       return NextResponse.json(
