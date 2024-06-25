@@ -13,6 +13,11 @@ const options = {
     deprecationErrors: true,
     tls: true,
     tlsAllowInvalidCertificates: false,
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    maxIdleTimeMS: 270000,
+    minPoolSize: 2,
+    maxPoolSize: 4,
   },
 };
 
