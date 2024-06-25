@@ -2,7 +2,7 @@ import { clientPromise } from "../../lib/mongoDB"; // Updated import statement u
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
-export const maxDuration = 300;
+export const maxDuration = 60;
 export async function POST(req: Request, res: Response) {
   try {
     const { name, email, password } = await req.json();
