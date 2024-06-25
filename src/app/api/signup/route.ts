@@ -2,7 +2,7 @@ import { clientPromise } from "../../lib/mongoDB"; // Updated import statement u
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
-
+export const maxDuration = 300;
 export async function POST(req: Request, res: Response) {
   try {
     const { name, email, password } = await req.json();
@@ -13,10 +13,11 @@ export async function POST(req: Request, res: Response) {
     if (user) {
       return NextResponse.json(
         { message: "User already exists." },
-        { status: 500 }
+        { status: 400 }
       );
     }
-    const hashedPassword = bcrypt.hashSync(password, 10);
+
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     await db.collection("users").insertOne({
       name,
@@ -24,7 +25,7 @@ export async function POST(req: Request, res: Response) {
       password: hashedPassword,
     });
 
-    const secretKey = process.env.TOKEN_SECRET ?? "defaultSecretKey"; // Replace "defaultSecretKey" with your actual default secret key
+    const secretKey = process.env.TOKEN_SECRET ?? "secretkey";
 
     // Generate JWT
     const token = jwt.sign(
