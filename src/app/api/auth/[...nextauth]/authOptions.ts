@@ -27,6 +27,7 @@ export const authOptions: NextAuthOptions = {
         console.log("im inside segment authorize");
         const client = await clientPromise;
         const db = client.db();
+        console.log("im below db connection");
         const user = await db.collection("users").findOne({
           email: credentials?.email,
         });
